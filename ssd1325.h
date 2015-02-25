@@ -1,61 +1,67 @@
+/*
+ * Rijn
+ * pixelnfinite.com
+ * 2015/02/25
+ */
+
 #ifndef __OLED_H
 #define __OLED_H 	
 
 #include "stm32f10x.h"
 
-#define     RCC_APB2Periph_OLED_PORT        RCC_APB2Periph_GPIOA
-#define     OLED_PORT                       GPIOA
-#define     OLED_RST_PIN                    GPIO_Pin_12
-#define     OLED_RST_L                      GPIO_ResetBits(GPIOA, GPIO_Pin_12);
-#define     OLED_RST_H                      GPIO_SetBits(GPIOA, GPIO_Pin_12);
-#define     OLED_MISO_PIN                   GPIO_Pin_6
-#define	    OLED_MISO_PIN_L                   GPIO_ResetBits(GPIOA, GPIO_Pin_6);
-#define     OLED_MISO_PIN_H                   GPIO_SetBits(GPIOA, GPIO_Pin_6);
-#define     OLED_NSS_PIN                    GPIO_Pin_4
-#define	    OLED_NSS_L                      GPIO_ResetBits(GPIOA, GPIO_Pin_4);
-#define     OLED_NSS_H                      GPIO_SetBits(GPIOA, GPIO_Pin_4);
-#define     OLED_DC_PIN                    GPIO_Pin_8
-#define	    OLED_DC_L                      GPIO_ResetBits(GPIOA, GPIO_Pin_8);
-#define     OLED_DC_H                      GPIO_SetBits(GPIOA, GPIO_Pin_8);
-#define  		OLED_SCLK_PIN										GPIO_Pin_5
-#define			OLED_MOSI_PIN										GPIO_Pin_7
+#define         RCC_APB2Periph_OLED_PORT        		RCC_APB2Periph_GPIOA
+#define         OLED_PORT                       		GPIOA
+#define         OLED_RST_PIN                    		GPIO_Pin_12
+#define         OLED_RST_L                      		GPIO_ResetBits(GPIOA, GPIO_Pin_12);
+#define         OLED_RST_H                      		GPIO_SetBits(GPIOA, GPIO_Pin_12);
+#define         OLED_MISO_PIN                   		GPIO_Pin_6
+#define	        OLED_MISO_PIN_L                   		GPIO_ResetBits(GPIOA, GPIO_Pin_6);
+#define         OLED_MISO_PIN_H                   		GPIO_SetBits(GPIOA, GPIO_Pin_6);
+#define         OLED_NSS_PIN                    		GPIO_Pin_4
+#define	        OLED_NSS_L                      		GPIO_ResetBits(GPIOA, GPIO_Pin_4);
+#define         OLED_NSS_H                     			GPIO_SetBits(GPIOA, GPIO_Pin_4);
+#define         OLED_DC_PIN                    			GPIO_Pin_8
+#define	        OLED_DC_L                      			GPIO_ResetBits(GPIOA, GPIO_Pin_8);
+#define         OLED_DC_H                               GPIO_SetBits(GPIOA, GPIO_Pin_8);
+#define  		OLED_SCLK_PIN							GPIO_Pin_5
+#define			OLED_MOSI_PIN							GPIO_Pin_7
 
-#define 		XLevelL													0x02
-#define 		XLevelH													0x10
-#define 		XLevel													((XLevelH&0x0F)*16+XLevelL)
+#define 		XLevelL									0x02
+#define 		XLevelH									0x10
+#define 		XLevel									((XLevelH&0x0F)*16+XLevelL)
 
-#define 		Max_Column											0x3F			// 128/2-1 (Total Columns Devided by 2)
-#define 		Max_Row													0x3F			// 64-1
-#define			Brightness											0xFF
+#define 		Max_Column								0x3F			// 128/2-1 (Total Columns Devided by 2)
+#define 		Max_Row									0x3F			// 64-1
+#define			Brightness								0xFF
 
-#define			COMPONENT_NULL									0x00
+#define			COMPONENT_NULL							0x00
 #define			COMPONENT_LABEL_ENABLED					0x01
 #define			COMPONENT_LABEL_DISABLED				0x02
 #define			COMPONENT_LABEL_HIDDEN					0x03
 #define			COMPONENT_BUTTON_ENABLED 				0x04
-#define			COMPONENT_BUTTON_DISABLED 		 	0x05
+#define			COMPONENT_BUTTON_DISABLED 		 	    0x05
 #define			COMPONENT_BUTTON_HIDDEN  				0x06
 #define			COMPONENT_RADIO_TRUE  					0x07
 #define			COMPONENT_RADIO_FALSE  					0x08
-#define			COMPONENT_RADIO_DISABLED  			0x09
+#define			COMPONENT_RADIO_DISABLED  			    0x09
 #define			COMPONENT_RADIO_HIDDEN  				0x0A
 #define			COMPONENT_TEXT_ENABLED					0x0B
 #define			COMPONENT_TEXT_DISABLED					0x0C
-#define			COMPONENT_TEXT_HIDDEN						0x0D
+#define			COMPONENT_TEXT_HIDDEN					0x0D
 #define			COMPONENT_PBAR_ENABLED					0x0E
 #define			COMPONENT_PBAR_DISABLED					0x0F
 #define			COMPONENT_WINDOW_ENABLED				0x10
 #define			COMPONENT_WINDOW_HIDDEN					0x11
 #define			COMPONENT_CHART_ENABLED					0x12
 #define			COMPONENT_CHART_HIDDEN					0x13
-#define			COMPONENT_LISTITEM_ENABLED			0x14
-#define			COMPONENT_LISTITEM_DISABLED			0x15
+#define			COMPONENT_LISTITEM_ENABLED			    0x14
+#define			COMPONENT_LISTITEM_DISABLED			    0x15
 #define			COMPONENT_LISTITEM_HIDDEN				0x16
 #define			COMPONENT_SRADIO_TRUE  					0x17
-#define			COMPONENT_SRADIO_FALSE  					0x18
-#define			COMPONENT_SRADIO_DISABLED  			0x19
+#define			COMPONENT_SRADIO_FALSE                  0x18
+#define			COMPONENT_SRADIO_DISABLED  		     	0x19
 #define			COMPONENT_SRADIO_HIDDEN  				0x1A
-#define			COMPONENT_BLANK  				0x1B
+#define			COMPONENT_BLANK                         0x1B
 
 #define			COMPONENT_MAX_INDEX 						0x15
 
@@ -126,7 +132,6 @@ void Show_Font57(unsigned char b, unsigned char c, unsigned char d,unsigned char
 void Show_Font68(unsigned char x, unsigned char y, unsigned char c,unsigned char k);
 
 void Next_Frame(void);
-void Update_Status(void);
 void Show_XGS(void);
 void Draw_Dot(u8 x, u8 y, u8 z, u8 color);
 void Clean_Screen(u8 x0, u8 y0, u8 x1, u8 y1, u8 z);
@@ -139,7 +144,7 @@ void Draw_4x6String(u8 x,u8 y,u8 z,u8 chr[],u8 font_color,u8 back_color);
 void Draw_Icon(u8 x,u8 y,u8 z,u8 chr,u8 font_color,u8 back_color);
 void Draw_Notification(u8 title[], u8 chr[]);
 void Draw_Reverse(u8 x0, u8 y0, u8 x1, u8 y1, u8 z);
-u8 Draw_Menu(u8 menu[][12], u8 x0, u8 y0, u8 x1, u8 y1, u8 default_select);
+u8   Draw_Menu(u8 menu[][12], u8 x0, u8 y0, u8 x1, u8 y1, u8 default_select);
 void Draw_Component(u8 type, u8 index, u8 x0, u8 y0, u8 x1, u8 y1, u8 z, u8 c0, u8 c1, u8 chr[]);
 void Draw_Logo(u8 z, u8 chr[]);
 void Update_Component(u8 select_index);

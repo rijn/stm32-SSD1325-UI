@@ -1,10 +1,14 @@
-#include "oled.h"
+/*
+ * Rijn
+ * pixelnfinite.com
+ * 2015/02/25
+ */
+
+#include "ssd1325.h"
 #include "stm32f10x.h"
 #include "stdio.h"
 #include "delay.h"
 #include "db.h"
-#include "time.h"
-#include "rtc.h"
 #include "keyboard.h"
 
 u8 OLED_PIXEL[2][65][129];
@@ -794,20 +798,6 @@ void Next_Frame(void)
 			//Write_Data(OLED_PIXEL[i][j]>>4|OLED_PIXEL[i][j+1]>>4<<4);
 			//Write_Data(OLED_PIXEL[i][j]>>4|OLED_PIXEL[i][j+1]>>4<<4);
 		}
-}
-
-void Update_Status(void)
-{
-	u8 i;
-	u8 str_temp[20];
-	
-	for(i=0;i<128;i++) OLED_PIXEL[0][7][i] = 0xFF;
-
-	//current_time = Time_GetUnixTime();
-  time_now = Time_GetCalendarTime();
-	sprintf((char*)str_temp, "%02d:%02d:%02d", time_now.tm_hour, time_now.tm_min, time_now.tm_sec);
-	Draw_4x6String(0,0,0,str_temp,0xFF,0x01);
-	Draw_Icon(0,120,0,0x00,0xFF,0x01);
 }
 
 void Show_XGS(void)
