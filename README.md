@@ -4,4 +4,4 @@
 
 ## Demo & Configuration
 
-[http://lab.rijnx.com/ssd1325/](http://pixelnfinite.com/ssd1325/) 
+[http://lab.rijnx.com/ssd1325/](http://lab.rijnx.com/ssd1325/) 
